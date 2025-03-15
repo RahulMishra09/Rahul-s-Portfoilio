@@ -17,7 +17,7 @@ function Header() {
           animate="visible"
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.1 } } // Delay between each letter
+            visible: { transition: { staggerChildren: 0.1 } } 
           }}
         >
           {name.map((letter, index) => (
@@ -36,41 +36,25 @@ function Header() {
 
         {/* Social Icons + Resume */}
         <div className="flex space-x-6 items-center">
-          {/* Social Links with Hover Effects */}
+          {/* Social Links */}
           {[
             { href: "https://www.linkedin.com/in/rahul-mishra-a2a5ba253/", icon: <FaLinkedin size={24} />, title: "LinkedIn" },
             { href: "https://github.com/RahulMishra09", icon: <FaGithub size={24} />, title: "GitHub" },
             { href: "https://www.hackerrank.com/profile/rahulchh07", icon: <FaHackerrank size={24} />, title: "HackerRank" },
-            { href: "https://www.kaggle.com/rahulmishra09", icon: <SiKaggle size={24} />, title: "Kaggle" }
+            { href: "https://www.kaggle.com/rahulmishra09", icon: <SiKaggle size={24} />, title: "Kaggle" },
+            { href: "https://drive.google.com/file/d/161wJCwHIExAJKlwgnCfmJluF5ffWFNbk/view?usp=sharing", icon: <FaFilePdf size={28} />, title: "Resume" } // Resume integrated into social links
           ].map((link, index) => (
             <a 
               key={index} 
               href={link.href} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="group flex flex-col items-center text-gray-300 hover:text-orange-400 transition-all duration-300 transform hover:scale-110"
+              className="text-gray-300 hover:text-orange-400 transition-all duration-300"
               title={link.title}
             >
-              <span className="mb-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                {link.title}
-              </span>
               {link.icon}
             </a>
           ))}
-
-          {/* Resume Opens in New Tab Instead of Downloading */}
-          <a 
-            href="/public/resume.pdf" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            title="View Resume"
-            className="group flex flex-col items-center text-gray-300 hover:text-red-500 transition-all duration-300 transform hover:scale-110"
-          >
-            <span className="mb-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              Resume
-            </span>
-            <FaFilePdf size={28} />
-          </a>
         </div>
       </div>
     </header>
