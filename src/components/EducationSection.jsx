@@ -43,7 +43,7 @@ function EducationSection() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-4xl font-bold mb-12 text-batman-yellow text-center flex items-center justify-center gap-3"
+        className="text-4xl font-bold mb-12 text-primary-orange text-center flex items-center"
       >
         <motion.div
           animate={{
@@ -55,9 +55,9 @@ function EducationSection() {
             repeatType: "reverse"
           }}
         >
-          <FaGraduationCap className="text-primary-orange" size={40} />
+          
         </motion.div>
-        Education Journey
+        Education 
       </motion.h2>
 
       <motion.div 
