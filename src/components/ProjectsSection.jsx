@@ -20,13 +20,13 @@ function ProjectsSection() {
       title: 'Fire Detection', 
       description: 'Fire Detection identifies fire or smoke for early warning and safety.',
       link: 'https://github.com/RahulMishra09/Fire_Detection_System?tab=readme-ov-file',
-      tech: ['Python', 'OpenCV', 'TensorFlow']
+      tech: ['Python', 'Yol8 V*', 'Pytouch']
     },
     { 
       title: 'Student Management System', 
       description: 'A Student Management System manages student data and administration.',
       link: 'https://github.com/RahulMishra09/Student_Management_System',
-      tech: ['Java', 'Spring Boot', 'MySQL']
+      tech: ['Python', 'Tkinter', 'MySQL']
     },
   ];
 
