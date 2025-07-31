@@ -12,29 +12,29 @@ import Loader from './components/Loader';
 function App() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500);
+    const timer = setTimeout(() => setLoading(false), 3000); // 3 seconds for loader
     return () => clearTimeout(timer);
   }, []);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
-    <div className="font-sans">
-      {loading && (
-        <div className="fixed inset-0 z-50 bg-dark-background flex items-center justify-center transition-opacity duration-700" style={{ opacity: loading ? 1 : 0 }}>
-          <Loader />
-        </div>
-      )}
-      <div style={{ opacity: loading ? 0 : 1, transition: 'opacity 0.7s' }}>
-        <Header />
-        <main className="container mx-auto px-4 py-8">
+    <div className="font-sans bg-hero-gradient min-h-screen">
+      <Header />
+      <main className="container mx-auto px-4 py-8 relative">
+        <div className="absolute inset-0 bg-gradient-radial from-primary-orange/5 via-transparent to-secondary-orange/5 pointer-events-none"></div>
+        <div className="relative z-10">
           <HeroSection />
           <SkillsSection />
           <ExperienceSection />
           <EducationSection />
           <ProjectsSection />
           <ContactSection />
-        </main>
-        <Footer />
-      </div>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }

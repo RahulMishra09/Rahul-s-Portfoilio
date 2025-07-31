@@ -42,93 +42,76 @@ function ExperienceSection() {
 
   // Main render
   return (
-    // Section wrapper with padding and background styling
-    <section className="py-16 bg-dark-background section-glow-on-hover relative">
-      {/* Decorative blurred circles for visual effect */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-primary-orange/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-40 h-40 bg-batman-yellow/5 rounded-full blur-3xl"></div>
+    <section className="py-20 relative">
+      <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-radial from-primary-orange/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-radial from-secondary-orange/20 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
 
-      {/* Section heading with animation */}
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-4xl font-bold mb-12 text-primary-orange text-left"
+        className="text-5xl font-extrabold mb-16 bg-orange-gradient bg-clip-text text-transparent"
       >
         Experience
       </motion.h2>
 
-      {/* Experience cards container with staggered animation */}
       <motion.div 
         initial="hidden"
         whileInView="visible"
         variants={containerVariants}
         className="space-y-8"
       >
-        {/* Map through experiences and render each card */}
         {experiences.map((experience, index) => (
           <motion.div
             key={index}
             variants={itemVariants}
-            whileHover={{ scale: 1.02 }}
-            className="p-8 rounded-xl shadow-lg bg-black border border-primary-orange/30 hover:shadow-batman-yellow/20 transition-all duration-300 relative overflow-hidden"
+            whileHover={{ scale: 1.02, y: -5 }}
+            className="bg-card-gradient backdrop-blur-sm border border-glass-white rounded-2xl p-8 shadow-glow-orange/20 hover:shadow-glow-orange-lg/30 transition-all duration-500 relative overflow-hidden group"
           >
-            {/* Card background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-orange/5 to-batman-yellow/5"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-orange/10 via-transparent to-secondary-orange/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             
-            {/* Card content */}
             <div className="relative z-10">
-              {/* Top section: icon, title, company, duration, location */}
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-4">
-                  {/* Experience icon with rotation animation on hover */}
+              <div className="flex items-start justify-between mb-6">
+                <div className="flex items-center gap-6">
                   <motion.div 
-                    className="p-3 rounded-lg text-white text-xl"
-                    style={{ backgroundColor: experience.color }}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.5 }}
+                    className="p-4 rounded-xl text-white text-2xl bg-gradient-to-r from-primary-orange to-red-500 shadow-glow-orange/50"
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
                   >
                     {experience.icon}
                   </motion.div>
                   <div>
-                    {/* Experience title */}
-                    <h3 className="text-2xl font-semibold text-primary-orange mb-1">
+                    <h3 className="text-3xl font-bold bg-orange-gradient bg-clip-text text-transparent mb-2 group-hover:scale-105 transition-transform duration-300">
                       {experience.title}
                     </h3>
-                    {/* Company name with university icon */}
-                    <div className="flex items-center gap-2 text-gray-300">
-                      <FaUniversity className="text-batman-yellow" />
-                      <span className="font-medium">{experience.company}</span>
+                    <div className="flex items-center gap-3 text-gray-200">
+                      <FaUniversity className="text-secondary-orange text-lg" />
+                      <span className="font-semibold text-lg">{experience.company}</span>
                     </div>
                   </div>
                 </div>
                 
-                {/* Duration and location section with slight scale animation on hover */}
                 <motion.div 
                   className="text-right"
                   whileHover={{ scale: 1.05 }}
                 >
-                  {/* Duration with calendar icon */}
-                  <div className="flex items-center gap-2 text-batman-yellow font-semibold mb-1">
+                  <div className="flex items-center gap-3 text-secondary-orange font-semibold mb-2 text-lg">
                     <FaCalendarAlt />
                     <span>{experience.duration}</span>
                   </div>
-                  {/* Location with map marker icon */}
-                  <div className="flex items-center gap-2 text-gray-400 text-sm">
+                  <div className="flex items-center gap-3 text-gray-300">
                     <FaMapMarkerAlt />
                     <span>{experience.location}</span>
                   </div>
                 </motion.div>
               </div>
               
-              {/* Experience description */}
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-200 leading-relaxed text-lg font-light">
                 {experience.description}
               </p>
-              
-              {/* Badge indicating current activity status */}
-             
             </div>
+
+            <div className="absolute top-0 left-0 w-full h-1 bg-orange-gradient opacity-60"></div>
           </motion.div>
         ))}
       </motion.div>
