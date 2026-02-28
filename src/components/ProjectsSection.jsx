@@ -47,8 +47,14 @@ function ProjectsSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            whileHover={{ scale: 1.03, y: -5 }}
-            className="bg-card-gradient backdrop-blur-sm border border-glass-white rounded-2xl p-8 shadow-glow-orange/20 hover:shadow-glow-orange-lg/30 transition-all duration-500 group"
+            whileHover={{
+              scale: 1.05,
+              y: -10,
+              rotateX: 5,
+              rotateY: 5
+            }}
+            style={{ transformStyle: "preserve-3d" }}
+            className="bg-card-gradient backdrop-blur-sm border border-glass-white rounded-2xl p-8 shadow-glow-orange/20 hover:shadow-glow-orange-xl transition-all duration-500 group"
           >
             <div className="flex justify-between items-start mb-6">
               <h3 className="text-2xl font-bold bg-orange-gradient bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
