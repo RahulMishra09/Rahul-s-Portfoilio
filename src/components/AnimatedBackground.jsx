@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 function AnimatedBackground() {
@@ -15,11 +15,11 @@ function AnimatedBackground() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Generate random stars
+  // Generate random stars - optimized count
   useEffect(() => {
     const generateStars = () => {
       const newStars = [];
-      for (let i = 0; i < 200; i++) {
+      for (let i = 0; i < 100; i++) { // Reduced from 200 to 100
         newStars.push({
           id: i,
           x: Math.random() * 100,
@@ -92,7 +92,8 @@ function AnimatedBackground() {
               width: `${star.size}px`,
               height: `${star.size}px`,
               transform: `translateY(${scrollY * 0.05}px)`,
-              boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, 0.5)`
+              boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, 0.5)`,
+              willChange: 'opacity, transform'
             }}
             animate={{
               opacity: [star.opacity, star.opacity + 0.4, star.opacity],
@@ -115,6 +116,7 @@ function AnimatedBackground() {
             style={{
               left: `${star.startX}%`,
               top: `${star.startY}%`,
+              willChange: 'transform, opacity'
             }}
             initial={{ opacity: 0, x: 0, y: 0, scale: 0.8 }}
             animate={{

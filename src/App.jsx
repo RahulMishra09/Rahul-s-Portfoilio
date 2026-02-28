@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
@@ -17,8 +17,8 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Wait for loading bar to reach 100% (8 seconds) + brief hold (0.5s) = 8.5 seconds total
-    const timer = setTimeout(() => setLoading(false), 8500);
+    // Wait for loading bar to reach 100% (2.5 seconds) + brief hold (0.5s) = 3 seconds total
+    const timer = setTimeout(() => setLoading(false), 3000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -30,8 +30,9 @@ function App() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
       className="font-sans min-h-screen relative"
+      style={{ willChange: 'opacity' }}
     >
       <AnimatedBackground />
       <ParticleBackground />

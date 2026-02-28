@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 function Loader() {
@@ -17,22 +17,22 @@ function Loader() {
   ];
 
   useEffect(() => {
-    // Progress bar reaches 100% in exactly 8 seconds
+    // Progress bar reaches 100% in exactly 2.5 seconds
     const progressInterval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(progressInterval);
           return 100;
         }
-        // Increment by 1.25% every 100ms = exactly 8 seconds to reach 100%
-        const nextProgress = prev + 1.25;
+        // Increment by 4% every 100ms = exactly 2.5 seconds to reach 100%
+        const nextProgress = prev + 4;
         return nextProgress >= 100 ? 100 : nextProgress;
       });
     }, 100);
 
     const thoughtInterval = setInterval(() => {
       setCurrentThought(prev => (prev + 1) % thinkingQuotes.length);
-    }, 1200);
+    }, 800);
 
     return () => {
       clearInterval(progressInterval);
@@ -58,13 +58,14 @@ function Loader() {
         }}
       />
 
-      {/* Subtle grid */}
+      {/* Subtle grid - optimized with will-change */}
       <div className="absolute inset-0 opacity-5">
         <motion.div
           className="w-full h-full"
           style={{
             backgroundImage: 'linear-gradient(rgba(255, 128, 0, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 128, 0, 0.3) 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
+            backgroundSize: '40px 40px',
+            willChange: 'background-position'
           }}
           animate={{
             backgroundPosition: ['0px 0px', '40px 40px']
@@ -77,9 +78,9 @@ function Loader() {
         />
       </div>
 
-      {/* Floating particles */}
+      {/* Floating particles - optimized */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(40)].map((_, i) => {
+        {[...Array(20)].map((_, i) => {
           const orangeShades = [
             'rgba(255, 128, 0, 0.6)',
             'rgba(255, 107, 0, 0.6)',
@@ -98,7 +99,8 @@ function Loader() {
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 background: color,
-                boxShadow: `0 0 ${Math.random() * 12 + 8}px ${color}`
+                boxShadow: `0 0 ${Math.random() * 12 + 8}px ${color}`,
+                willChange: 'transform, opacity'
               }}
               animate={{
                 y: [0, Math.random() * 100 - 50, 0],

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 function ParticleBackground() {
   const canvasRef = useRef(null);
@@ -12,7 +12,7 @@ function ParticleBackground() {
     canvas.height = window.innerHeight;
 
     const particles = [];
-    const particleCount = 80;
+    const particleCount = 50; // Reduced from 80 for better performance
 
     // Orange color palette
     const colors = ['#FF8000', '#FF6B00', '#E55100'];
@@ -69,7 +69,8 @@ function ParticleBackground() {
       }
     }
 
-    // Animation loop
+    // Animation loop with performance optimization
+    let animationFrameId;
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -79,7 +80,7 @@ function ParticleBackground() {
       });
 
       connectParticles();
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     }
 
     animate();
@@ -94,6 +95,7 @@ function ParticleBackground() {
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
